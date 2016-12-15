@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var cors = require('cors');
 var app = express();
 
@@ -14,10 +15,13 @@ var logger = new (winston.Logger)({
 });
 
 var personSearch = require('./person-search');
+var personModify = require('./person-modify');
 var skillsSearch = require('./skills-search');
 
 exports.createServer = function (port) {
   logger.info('Starting server on port', port);
+
+  app.use(bodyParser.json());
 
   app.get('/', cors(), function (req, res) {
     res.status(501);
@@ -36,13 +40,25 @@ exports.createServer = function (port) {
         logger.debug('Returning people with skills "%s" (infer? %s)', splitSkills, isTrue(req.query.infer));
       });
     } else {
-      personSearch.allPersons(function (err, result){
+      personSearch.allPersons(function (err, result) {
         res.status(200);
         res.set('Content-Type', 'application/json');
         res.send(JSON.stringify(result));
         logger.debug('Returning all persons');
       });
     }
+  });
+
+  app.post('/persons/:person', cors(), function (req, res) {
+    console.log(req.body);
+    personModify.modify(req.params.person, req.body, function(err, response) {
+      if(err) {
+        res.send(500);
+        logger.error(err);
+      } else {
+        res.send(201);
+      }
+    });
   });
 
   app.get('/persons/:person', cors(), function (req, res) {
@@ -61,9 +77,9 @@ exports.createServer = function (port) {
     });
   });
 
-  app.get('/skills', cors() , function (req, res) {
+  app.get('/skills', cors(), function (req, res) {
     res.set('Content-Type', 'application/json');
-    skillsSearch.skills(function(err, skills) {
+    skillsSearch.skills(function (err, skills) {
       res.status(200);
       res.send(JSON.stringify(skills));
       logger.debug('Returned skills %s', skills);
@@ -72,7 +88,7 @@ exports.createServer = function (port) {
 
   app.get('/skills/stats', cors(), function (req, res) {
     res.set('Content-Type', 'application/json');
-    skillsSearch.skillsWithStatistics(function(err, skills) {
+    skillsSearch.skillsWithStatistics(function (err, skills) {
       res.status(200);
       res.send(JSON.stringify(skills));
     })

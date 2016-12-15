@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/blalasaadri/TechTalent#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "cypher-query": "0.0.12",
     "express": "^4.14.0",

@@ -103,7 +103,22 @@ Result:
     Connection: keep-alive
 
     {"error":"No person with id \"bd\" found."}
-    
+
+Modifying the level of and affinity to a skill
+==============================================
+
+    curl -i -H "Content-Type: application/json" -X POST -d '{"name":"Java","inferred":false,"level":5,"affinity":3}' http://localhost:5000/persons/ac
+Result:
+
+    HTTP/1.1 201 Created
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: text/plain; charset=utf-8
+    Content-Length: 7
+    ETag: W/"7-Ds7rRYYflYXdepej42+Fxg"
+    Date: Thu, 15 Dec 2016 21:24:34 GMT
+    Connection: keep-alive
+
 Get a list of all skills
 ========================
     curl -i -H "Accept: application/json" -X GET https://techtalent.herokuapp.com/skills
@@ -135,5 +150,5 @@ Results:
     ETag: W/"5ac-GaefzLRO+QMuQs/Avr+qHQ"
     Date: Thu, 15 Dec 2016 20:17:03 GMT
     Connection: keep-alive
-    
+
     [{"skill":"React","values":[{"id":"tm","values":{"level":"4","affinity":"5"}},{"id":"ce","values":{"level":5,"affinity":5}},{"id":"ds","values":{"level":2,"affinity":1}}]},{"skill":"Redux","values":[{"id":"tm","values":{"level":"2","affinity":"4"}},{"id":"ce","values":{"level":5,"affinity":5}}]},{"skill":"Wicket","values":[{"id":"ac","values":{"level":4,"affinity":1}},{"id":"mb","values":{"level":5,"affinity":1}},{"id":"ds","values":{"level":4,"affinity":1}}]},{"skill":"Elixir","values":[{"id":"ds","values":{"level":3,"affinity":5}}]},{"skill":"Node.JS","values":[{"id":"ac","values":{"level":2,"affinity":3}},{"id":"mb","values":{"level":3,"affinity":3}},{"id":"ag","values":{"level":4,"affinity":4}}]},{"skill":"JavaScript","values":[{"id":"tm","values":{"level":"5","affinity":"5"}},{"id":"ce","values":{"level":5,"affinity":4}},{"id":"ag","values":{"level":5,"affinity":5}},{"id":"wf","values":{"level":5,"affinity":5}}]},{"skill":"Java","values":[{"id":"ac","values":{"level":5,"affinity":4}},{"id":"tm","values":{"level":"3","affinity":"3"}},{"id":"mb","values":{"level":5,"affinity":4}},{"id":"ds","values":{"level":5,"affinity":3}},{"id":"wf","values":{"level":5,"affinity":3}}]},{"skill":"Html","values":[{"id":"ac","values":{"level":4,"affinity":3}},{"id":"tm","values":{"level":4,"affinity":4}},{"id":"mb","values":{"level":4,"affinity":2}},{"id":"ce","values":{"level":5,"affinity":3}},{"id":"ag","values":{"level":5,"affinity":4}}]}]
