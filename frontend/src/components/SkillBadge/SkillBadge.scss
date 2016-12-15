@@ -1,0 +1,60 @@
+$skill-badge-border: 1px solid #999;
+$skill-badge-color-default: #fff;
+$skill-badge-color-inferred: #eee;
+$skill-badge-border-radius: 4px;
+
+.skill-badge-color-0 {
+  background-color: #d9534f;
+}
+.skill-badge-color-1 {
+  background-color: #e4804e;
+}
+.skill-badge-color-2 {
+  background-color: #f0ad4e;
+}
+.skill-badge-color-3 {
+  background-color: #beb052;
+}
+.skill-badge-color-4 {
+  background-color: #8db558;
+}
+.skill-badge-color-5 {
+  background-color: #5cb85c;
+}
+
+.skill-badge {
+  border: $skill-badge-border;
+  display: inline-block;
+  margin: 2px;
+  padding: 0;
+  vertical-align: middle;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: $skill-badge-border-radius;
+  background-color: $skill-badge-color-default;
+
+  * {
+    display: inline-block;
+    margin: 0;
+    padding: 1px 2px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.4);
+  }
+
+  .skill-badge-level {
+    border-right: $skill-badge-border;
+    border-top-left-radius: $skill-badge-border-radius - 1px;
+    border-bottom-left-radius: $skill-badge-border-radius - 1px;
+  }
+  .skill-badge-affinity {
+    border-left: $skill-badge-border;
+    border-top-right-radius: $skill-badge-border-radius - 1px;
+    border-bottom-right-radius: $skill-badge-border-radius - 1px;
+  }
+
+  &.skill-badge-inferred {
+    background-color: $skill-badge-color-inferred;
+  }
+}
