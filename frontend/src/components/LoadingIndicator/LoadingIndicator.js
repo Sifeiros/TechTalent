@@ -2,16 +2,16 @@ import React from 'react';
 // import './LoadingIndicator.scss';
 
 export const LoadingIndicator = function (props) {
-  if (props.isLoading) {
+  if (!props.isFetched) {
     return (<div>Loading</div>);
   } else {
-    return props.children;
+    return <props.element {...props} />;
   }
 };
 
 LoadingIndicator.propTypes = {
-  isLoading: React.PropTypes.bool.isRequired,
-  children: React.PropTypes.element.isRequired
+  isFetched: React.PropTypes.bool.isRequired,
+  element: React.PropTypes.func.isRequired
 };
 
 export default LoadingIndicator;

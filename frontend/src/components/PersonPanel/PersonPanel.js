@@ -5,9 +5,6 @@ import {
 import SkillOverview from 'components/SkillOverview';
 
 export const PersonPanel = function (props) {
-
-  if(!props.person) return <span>Not loaded</span>;
-
   const title = <h3>{props.person.displayName}</h3>;
   return (
     <Panel header={title}>
@@ -17,7 +14,7 @@ export const PersonPanel = function (props) {
 };
 
 PersonPanel.propTypes = {
-  person: React.PropTypes.object
+  person: React.PropTypes.object.isRequired
 };
 
 export default PersonPanel;
