@@ -1,7 +1,9 @@
-exports.allPersons = require('./person-mocks');
+var allPersons = require('./person-mocks');
+
+exports.allPersons = allPersons.persons;
 
 exports.findPeopleWithSkills = function (skills, inferranceAllowed) {
-  return findPeopleWithSkills(exports.allPersons, skills, inferranceAllowed);;
+  return findPeopleWithSkills(allPersons, skills, inferranceAllowed);
 };
 
 function findPeopleWithSkills(persons, skills, inferranceAllowed) {

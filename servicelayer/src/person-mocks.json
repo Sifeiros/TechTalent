@@ -39,6 +39,12 @@
       "id": "tm",
       "skills": [
         {
+          "name": "Java",
+          "inferred": false,
+          "level": 5,
+          "affinity": 4
+        },
+        {
           "name": "React",
           "inferred": false,
           "level": 5,
