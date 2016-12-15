@@ -5,10 +5,7 @@ class PersonSearchForm extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = {
-      skills: '',
-      infer: false
-    };
+    this.state = this.props.params;
 
     this.updateSkills = this.updateSkills.bind(this);
     this.updateInfer = this.updateInfer.bind(this);
@@ -35,11 +32,12 @@ class PersonSearchForm extends React.Component {
           <Typeahead onChange={this.updateSkills}
             options={this.props.options}
             placeholder='Skills'
+            defaultSelected={this.state.skills}
             multiple />
         </div>
         <div className='checkbox'>
           <label>
-            <input type='checkbox' onChange={this.updateInfer} /> Allow inferred
+            <input type='checkbox' onChange={this.updateInfer} checked={this.state.infer} /> Allow inferred
           </label>
         </div>
       </form>
@@ -49,7 +47,8 @@ class PersonSearchForm extends React.Component {
 
 PersonSearchForm.propTypes = {
   setSearchParams: React.PropTypes.func.isRequired,
-  options: React.PropTypes.object.isRequired
+  options: React.PropTypes.array.isRequired,
+  params: React.PropTypes.object.isRequired
 };
 
 export default PersonSearchForm;

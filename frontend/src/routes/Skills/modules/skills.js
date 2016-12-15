@@ -22,7 +22,7 @@ export function fetchSkills () {
       mode: 'cors',
       cache: 'default' };
 
-    return fetch('https://techtalent.herokuapp.com/skills', init)
+    return fetch('https://techtalent.herokuapp.com/skills/stats', init)
       .then(response => response.json())
       .then(json => dispatch(receive(json))
       ).catch(function (error) {

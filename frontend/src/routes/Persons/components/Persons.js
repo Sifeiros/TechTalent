@@ -14,12 +14,13 @@ class Persons extends React.Component {
   render () {
     return (
       <div>
-        <LoadingIndicator isFetched={this.props.skills.isFetched}
+        <LoadingIndicator isFetched={this.props.skills.isFetched} error={this.props.skills.error}
           element={PersonSearchForm}
           setSearchParams={this.props.setSearchParams}
           options={this.props.skills.skills}
+          params={this.props.persons.params}
         />
-        <LoadingIndicator isFetched={this.props.persons.isFetched}
+        <LoadingIndicator isFetched={this.props.persons.isFetched} error={this.props.persons.error}
           element={PersonTable}
           persons={this.props.persons.persons} />
       </div>

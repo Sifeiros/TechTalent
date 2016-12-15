@@ -4,6 +4,7 @@ import Home from './Home';
 import CounterRoute from './Counter';
 import PersonsRoute from './Persons';
 import PersonRoute from './Person';
+import SkillsRoute from './Skills';
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -15,7 +16,8 @@ export const createRoutes = (store) => ({
   childRoutes : [
     CounterRoute(store),
     PersonsRoute(store),
-    PersonRoute(store)
+    PersonRoute(store),
+    SkillsRoute(store)
   ]
 });
 

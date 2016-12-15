@@ -10,9 +10,9 @@ class Person extends React.Component {
 
   render () {
     return (
-      <LoadingIndicator isFetched={this.props.isFetched}
+      <LoadingIndicator isFetched={this.props.isFetched} error={this.props.error}
         element={PersonPanel}
-        person={this.props.person} />
+        person={this.props.person} update={this.props.update} />
     );
   }
 }
@@ -23,6 +23,7 @@ Person.propTypes = {
   person: React.PropTypes.object,
   error: React.PropTypes.string,
   fetchPerson: React.PropTypes.func.isRequired,
+  update: React.PropTypes.func.isRequired,
   params: React.PropTypes.object.isRequired
 };
 

@@ -6,7 +6,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       const Persons = require('./containers/PersonsContainer').default;
       const personsReducer = require('./modules/persons').default;
-      const skillsReducer = require('./modules/skills').default;
+      const skillsReducer = require('../Skills/modules/skills').default;
       injectReducer(store, { key: 'persons', reducer: personsReducer });
       injectReducer(store, { key: 'skills', reducer: skillsReducer });
       cb(null, Persons);
