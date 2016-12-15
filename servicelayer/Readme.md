@@ -80,12 +80,12 @@ Result:
     X-Powered-By: Express
     Access-Control-Allow-Origin: *
     Content-Type: application/json; charset=utf-8
-    Content-Length: 350
-    ETag: W/"15e-5Hk94CfDBTyIQIaB1qgTlA"
-    Date: Thu, 15 Dec 2016 13:05:51 GMT
+    Content-Length: 348
+    ETag: W/"15c-xOOxtxfckitNVlV41JycKA"
+    Date: Thu, 15 Dec 2016 14:29:37 GMT
     Connection: keep-alive
 
-    [{"displayName":"Alasdair Collinson","id":"ac","skills":[{"name":"Java","inferred":false,"level":5,"affinity":4},{"name":"Wicket","inferred":false,"level":4,"affinity":1},{"name":"Node.JS","inferred":false,"level":2,"affinity":3},{"name":"JavaScript","inferred":true}],"currentProject":{"customer":"Mock Bank","name":"Homeless","pl":"cw","tl":"ds"}}]
+    {"displayName":"Alasdair Collinson","id":"ac","skills":[{"name":"Java","inferred":false,"level":5,"affinity":4},{"name":"Wicket","inferred":false,"level":4,"affinity":1},{"name":"Node.JS","inferred":false,"level":2,"affinity":3},{"name":"JavaScript","inferred":true}],"currentProject":{"customer":"Mock Bank","name":"Homeless","pl":"cw","tl":"ds"}}
 
 Find non-existing person with the id "bd":
 ==========================================
