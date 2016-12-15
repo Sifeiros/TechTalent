@@ -19,8 +19,10 @@
   "homepage": "https://github.com/blalasaadri/TechTalent#readme",
   "dependencies": {
     "cors": "^2.8.1",
+    "cypher-query": "0.0.12",
     "express": "^4.14.0",
     "moment": "^2.17.1",
+    "neo4j": "^2.0.0-RC2",
     "underscore": "^1.8.3",
     "winston": "^2.3.0"
   },
