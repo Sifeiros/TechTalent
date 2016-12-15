@@ -30,17 +30,18 @@ exports.createServer = function (port) {
     res.set('Content-Type', 'application/json');
     var skills = req.query.skills;
     if (skills) {
-      res.send(JSON.stringify(personSearch.findPeopleWithSkills(req.query.skills, req.query.infer)));
-      logger.debug('Returning people with skills "%s" (infer? %s)', req.query.skills, req.query.infer);
+      res.send(JSON.stringify(personSearch.findPeopleWithSkills(req.query.skills, isTrue(req.query.infer))));
+      logger.debug('Returning people with skills "%s" (infer? %s)', req.query.skills, isTrue(req.query.infer));
     } else {
       res.send(JSON.stringify(personSearch.allPersons));
     }
     logger.debug('Returning all persons');
   });
+
   app.get('/persons/:person', cors(), function (req, res) {
     res.set('Content-Type', 'application/json');
     var id = req.params.person;
-    personSearch.findPerson(id, true, function (err, person) {
+    personSearch.findPerson(id, isTrue(req.query.infer), function (err, person) {
       if (person) {
         res.status(200);
         res.send(JSON.stringify(person));
@@ -69,3 +70,7 @@ exports.createServer = function (port) {
 
   return server;
 };
+
+function isTrue(param) {
+  return (param === true) || (param === "true");
+}

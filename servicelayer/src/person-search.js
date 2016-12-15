@@ -14,7 +14,7 @@ function findPeopleWithSkills(persons, skills, inferranceAllowed) {
     var matchingSkills = [];
     person.skills.forEach(function (skill) {
       if (skill.name === skills) {
-        if ((inferranceAllowed === "true") || !skill.inferred) {
+        if (inferranceAllowed || !skill.inferred) {
           matchingSkills.push(skill);
         }
       }
