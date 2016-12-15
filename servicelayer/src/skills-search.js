@@ -14,3 +14,11 @@ exports.skills = function (callback) {
 function getListOfSkills(dbresult) {
   return _.map(dbresult, function(result) { return result.skill });
 }
+
+exports.skillsWithStatistics = function (callback) {
+  var query = cypher()
+    .match("(p:Person)-[:KNOWS]->(s:Skill)")
+    .return("s.name AS skill, count(p) AS people");
+
+  db.cypher({query: query.compile(true)}, callback);
+}

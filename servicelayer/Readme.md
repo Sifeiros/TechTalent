@@ -119,5 +119,21 @@ Result:
     Etag: W/"42-z/Rw/Yjqy6Jb35WPHKt7Cw"
     Date: Thu, 15 Dec 2016 15:12:45 GMT
     Via: 1.1 vegur
-    
+
     ["Java","Wicket","Node.JS","JavaScript","React","Angular","Redux"]
+
+See how many people in the company have those skills
+====================================================
+    curl -i -H "Accept: application/json" -X GET http://localhost:5000/skills/stats
+Result:
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 210
+    ETag: W/"d2-KWbuAquyGOlIBVH2qz2fHw"
+    Date: Thu, 15 Dec 2016 19:10:20 GMT
+    Connection: keep-alive
+
+    [{"skill":"React","people":1},{"skill":"Redux","people":1},{"skill":"Wicket","people":1},{"skill":"Node.JS","people":1},{"skill":"JavaScript","people":1},{"skill":"Java","people":2},{"skill":"Html","people":2}]
