@@ -1,7 +1,7 @@
 First test:
 ===========
 
-    curl -i -H "Accept: application/json" -X GET -d '{"parameter": "param"}' http://localhost:1512/
+    curl -i -H "Accept: application/json" -X GET http://localhost:1512/
 Result:
 
     HTTP/1.1 501 Not Implemented
@@ -18,7 +18,7 @@ Result:
 Find all people:
 ================
 
-    curl -i -H "Accept: application/json" -X GET -d '{"parameter": "param"}' http://localhost:1512/persons
+    curl -i -H "Accept: application/json" -X GET http://localhost:1512/persons
 Result:
 
     HTTP/1.1 200 OK
@@ -35,10 +35,10 @@ Result:
 Find all people with certain skills:
 ====================================
 
-    curl -i -H "Accept: application/json" -X GET -d '{"parameter": "param"}' http://localhost:1512/persons/search?skills=JavaScript
+    curl -i -H "Accept: application/json" -X GET http://localhost:1512/persons/search?skills=JavaScript
 or
 
-    curl -i -H "Accept: application/json" -X GET -d '{"parameter": "param"}' http://localhost:1512/persons/search?skills=JavaScript\&infer=false
+    curl -i -H "Accept: application/json" -X GET http://localhost:1512/persons/search?skills=JavaScript\&infer=false
 Result:
 
     HTTP/1.1 200 OK
@@ -56,7 +56,7 @@ Result:
 Find all people with inferred skills:
 =====================================
 
-    curl -i -H "Accept: application/json" -X GET -d '{"parameter": "param"}' http://localhost:1512/persons/search?skills=JavaScript\&infer=true
+    curl -i -H "Accept: application/json" -X GET http://localhost:1512/persons/search?skills=JavaScript\&infer=true
 Result:
 
     HTTP/1.1 200 OK
@@ -73,7 +73,7 @@ Result:
 Find existing person with the id "ac":
 ======================================
 
-    curl -i -H "Accept: application/json" -X GET -d '{"parameter": "param"}' http://localhost:1512/persons/ac
+    curl -i -H "Accept: application/json" -X GET http://localhost:1512/persons/ac
 Result:
 
     HTTP/1.1 200 OK
@@ -90,7 +90,7 @@ Result:
 Find non-existing person with the id "bd":
 ==========================================
 
-    curl -i -H "Accept: application/json" -X GET -d '{"parameter": "param"}' http://localhost:1512/persons/bd
+    curl -i -H "Accept: application/json" -X GET http://localhost:1512/persons/bd
 Result:
 
     HTTP/1.1 404 Not Found
