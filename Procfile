@@ -1,1 +1,1 @@
-web: cd frontend && yarn install && npm run dev
+web: cd frontend && npm install -g yarn && yarn install && npm run dev
