@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
-import { fetchPerson } from '../modules/person';
+import { fetchPerson, update } from '../modules/person';
 
 import Person from '../components/Person';
 
 const mapDispatchToProps = {
-  fetchPerson
+  fetchPerson,
+  update
 };
 
 const mapStateToProps = (state) => ({

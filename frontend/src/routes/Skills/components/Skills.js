@@ -3,16 +3,16 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import SkillsDetails from 'components/SkillsDetails';
 
 class Skills extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     props.fetchSkills();
   }
 
-  render() {
+  render () {
     return (
       <LoadingIndicator isFetched={this.props.isFetched} error={this.props.skills.error}
-                        element={SkillsDetails}
-                        skills={this.props.skills}
+        element={SkillsDetails}
+        skills={this.props.skills}
       />
     );
   }

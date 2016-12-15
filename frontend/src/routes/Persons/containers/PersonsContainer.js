@@ -11,7 +11,7 @@ const mapDispatchToProps = {
   fetchSkills
 };
 
-const getPersons = (state) => state.persons;
+const getPersons = (state) => Object.assign({}, state.persons);
 const injectSearchIntoPersons = createSelector(getPersons, function (persons) {
   persons.persons.forEach(function (person) {
     person.skills.forEach(function (skill) {
@@ -24,8 +24,9 @@ const injectSearchIntoPersons = createSelector(getPersons, function (persons) {
 
 const getSkills = (state) => state.skills;
 const flattenSkills = createSelector(getSkills, function (skills) {
-  skills.skills = skills.skills ? skills.skills.map((skillObject) => skillObject.skill) : null;
-  return skills;
+  return Object.assign({}, skills, {
+    skills: skills.skills ? skills.skills.map((skillObject) => skillObject.skill) : null
+  });
 });
 
 const mapStateToProps = (state) => ({

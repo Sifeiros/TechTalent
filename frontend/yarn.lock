@@ -1014,7 +1014,7 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.3.0, bluebird@^3.4.6:
+bluebird@^3.3.0, bluebird@^3.3.4, bluebird@^3.4.6:
   version "3.4.6"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.6.tgz#01da8d821d87813d158967e743d5fe6c62cf8c0f"
 
@@ -1042,6 +1042,10 @@ boom@2.x.x:
   resolved "https://registry.yarnpkg.com/boom/-/boom-2.10.1.tgz#39c8918ceff5799f83f9492a848f625add0c766f"
   dependencies:
     hoek "2.x.x"
+
+bootstrap-slider@^9.4.1:
+  version "9.5.3"
+  resolved "https://registry.yarnpkg.com/bootstrap-slider/-/bootstrap-slider-9.5.3.tgz#9a2b264d46280b8f577bd08e014b830e063f727f"
 
 bootstrap@^3.3.7:
   version "3.3.7"
@@ -2036,6 +2040,10 @@ es6-weak-map@^2.0.1:
     es5-ext "^0.10.8"
     es6-iterator "2"
     es6-symbol "3"
+
+es6bindall@0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/es6bindall/-/es6bindall-0.0.9.tgz#71e00afa69f8dd59ac5ac898a0d31c978df817d5"
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -3234,6 +3242,10 @@ jodid25519@^1.0.0:
   resolved "https://registry.yarnpkg.com/jodid25519/-/jodid25519-1.0.2.tgz#06d4912255093419477d425633606e0e90782967"
   dependencies:
     jsbn "~0.1.0"
+
+jquery@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
 
 js-base64@^2.1.9:
   version "2.1.9"
@@ -4723,6 +4735,17 @@ react-addons-test-utils@^15.0.0:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.4.1.tgz#1e4caab151bf27cce26df5f9cb714f4fd8359ae1"
 
+react-bootstrap-slider@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-slider/-/react-bootstrap-slider-1.1.3.tgz#7529de3257b5efa527aad0120f41b0eeb699f745"
+  dependencies:
+    bootstrap "^3.3.7"
+    bootstrap-slider "^9.4.1"
+    es6bindall "0.0.9"
+    jquery "^3.1.1"
+    react "^15.4.0"
+    react-dom "^15.4.0"
+
 react-bootstrap-typeahead@^1.0.0-beta2:
   version "1.0.0-beta2"
   resolved "https://registry.yarnpkg.com/react-bootstrap-typeahead/-/react-bootstrap-typeahead-1.0.0-beta2.tgz#066b49d1fe44ab1eeb4488d96c73818fc19835ce"
@@ -4751,7 +4774,7 @@ react-bootstrap@^0.30.7:
     uncontrollable "^4.0.1"
     warning "^3.0.0"
 
-react-dom@^15.0.0:
+react-dom@^15.0.0, react-dom@^15.4.0:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.1.tgz#d54c913261aaedb17adc20410d029dcc18a1344a"
   dependencies:
@@ -4769,6 +4792,14 @@ react-element-to-jsx-string@^5.0.0:
     sortobject "^1.0.0"
     stringify-object "^2.4.0"
     traverse "^0.6.6"
+
+react-google-charts@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-google-charts/-/react-google-charts-1.2.1.tgz#421b90eb4d0034e982c66aca051c12acec09d7a6"
+  dependencies:
+    bluebird "^3.3.4"
+    debug "^2.2.0"
+    scriptjs "^2.5.8"
 
 react-highlighter@^0.3.3:
   version "0.3.3"
@@ -4825,7 +4856,7 @@ react-router@^3.0.0:
     loose-envify "^1.2.0"
     warning "^3.0.0"
 
-react@^15.0.0:
+react@^15.0.0, react@^15.4.0:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.4.1.tgz#498e918602677a3983cd0fd206dfe700389a0dd6"
   dependencies:
@@ -5211,6 +5242,10 @@ sass-loader@^4.0.0:
 sax@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
+
+scriptjs@^2.5.8:
+  version "2.5.8"
+  resolved "https://registry.yarnpkg.com/scriptjs/-/scriptjs-2.5.8.tgz#d0c43955c2e6bad33b6e4edf7b53b8965aa7ca5f"
 
 semver-diff@^2.0.0:
   version "2.1.0"
