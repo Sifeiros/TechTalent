@@ -1,1 +1,1 @@
-web: cd servicelayer && npm install && npm start
+web: cd frontend && yarn install && npm run dev
