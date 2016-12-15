@@ -31,8 +31,8 @@ exports.createServer = function (port) {
   app.get('/persons/search', cors(), function (req, res) {
     res.status(200);
     res.set('Content-Type', 'application/json');
-    res.send(JSON.stringify(personSearch.findPeopleWithSkills(req.query.skills)));
-    logger.debug('Returning people with skills "%s"', req.query.skills);
+    res.send(JSON.stringify(personSearch.findPeopleWithSkills(req.query.skills, req.query.infer)));
+    logger.debug('Returning people with skills "%s" (infer? %s)', req.query.skills, req.query.infer);
   });
   app.get('/persons/:person', cors(), function (req, res) {
     res.set('Content-Type', 'application/json');

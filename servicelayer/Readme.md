@@ -12,7 +12,7 @@ Result:
     ETag: W/"1d-bqoUPWHeCwN3Rj7dquOUSQ"
     Date: Thu, 15 Dec 2016 13:06:43 GMT
     Connection: keep-alive
-    
+
     {"message":"not implemented"
 
 Find all people:
@@ -35,19 +35,40 @@ Result:
 Find all people with certain skills:
 ====================================
 
-    curl -i -H "Accept: application/json" -X GET -d '{"parameter": "param"}' http://localhost:1512/persons/search?skills=Java
+    curl -i -H "Accept: application/json" -X GET -d '{"parameter": "param"}' http://localhost:1512/persons/search?skills=JavaScript
+or
+
+    curl -i -H "Accept: application/json" -X GET -d '{"parameter": "param"}' http://localhost:1512/persons/search?skills=JavaScript\&infer=false
 Result:
 
     HTTP/1.1 200 OK
     X-Powered-By: Express
     Access-Control-Allow-Origin: *
     Content-Type: application/json; charset=utf-8
-    Content-Length: 350
-    ETag: W/"15e-5Hk94CfDBTyIQIaB1qgTlA"
-    Date: Thu, 15 Dec 2016 13:06:09 GMT
+    Content-Length: 369
+    ETag: W/"171-AFZeOo7QTpmJBmC+DxMRJg"
+    Date: Thu, 15 Dec 2016 14:03:19 GMT
     Connection: keep-alive
+    
+    [{"displayName":"Thomas Maqua","id":"tm","skills":[{"name":"React","inferred":false,"level":5,"affinity":5},{"name":"Redux","inferred":false,"level":3,"affinity":5},{"name":"Angular","inferred":false,"level":4,"affinity":3},{"name":"JavaScript","inferred":false,"level":4,"affinity":4}],"currentProject":{"customer":"Magic Bank","name":"Fancypants","pl":"?","tl":"?"}}]
 
-    [{"displayName":"Alasdair Collinson","id":"ac","skills":[{"name":"Java","inferred":false,"level":5,"affinity":4},{"name":"Wicket","inferred":false,"level":4,"affinity":1},{"name":"Node.JS","inferred":false,"level":2,"affinity":3},{"name":"JavaScript","inferred":true}],"currentProject":{"customer":"Mock Bank","name":"Homeless","pl":"cw","tl":"ds"}}]
+
+Find all people with inferred skills:
+=====================================
+
+    curl -i -H "Accept: application/json" -X GET -d '{"parameter": "param"}' http://localhost:1512/persons/search?skills=JavaScript\&infer=true
+Result:
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 718
+    ETag: W/"2ce-BMaC7jdJLN0CBIjSCIqXtg"
+    Date: Thu, 15 Dec 2016 14:03:41 GMT
+    Connection: keep-alive
+    
+    [{"displayName":"Alasdair Collinson","id":"ac","skills":[{"name":"Java","inferred":false,"level":5,"affinity":4},{"name":"Wicket","inferred":false,"level":4,"affinity":1},{"name":"Node.JS","inferred":false,"level":2,"affinity":3},{"name":"JavaScript","inferred":true}],"currentProject":{"customer":"Mock Bank","name":"Homeless","pl":"cw","tl":"ds"}},{"displayName":"Thomas Maqua","id":"tm","skills":[{"name":"React","inferred":false,"level":5,"affinity":5},{"name":"Redux","inferred":false,"level":3,"affinity":5},{"name":"Angular","inferred":false,"level":4,"affinity":3},{"name":"JavaScript","inferred":false,"level":4,"affinity":4}],"currentProject":{"customer":"Magic Bank","name":"Fancypants","pl":"?","tl":"?"}}]
 
 Find existing person with the id "ac":
 ======================================

@@ -1,19 +1,21 @@
 exports.allPersons = require('./person-mocks');
 
-exports.findPeopleWithSkills = function (skills) {
-  return findPeopleWithSkills(exports.allPersons, skills);
+exports.findPeopleWithSkills = function (skills, inferranceAllowed) {
+  return findPeopleWithSkills(exports.allPersons, skills, inferranceAllowed);;
 };
 
-function findPeopleWithSkills(persons, skills) {
+function findPeopleWithSkills(persons, skills, inferranceAllowed) {
   // TODO Replace with actual search
   return persons.persons.filter(function (person) {
-    var result = false;
+    var matchingSkills = [];
     person.skills.forEach(function (skill) {
       if (skill.name === skills) {
-        result = true;
+        if ((inferranceAllowed === "true") || !skill.inferred) {
+          matchingSkills.push(skill);
+        }
       }
     });
-    return result;
+    return matchingSkills.length > 0;
   });
 }
 
