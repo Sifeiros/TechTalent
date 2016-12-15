@@ -1,30 +1,38 @@
 import React from 'react';
-import {
-  Button
-} from 'react-bootstrap';
 import LoadingIndicator from 'components/LoadingIndicator';
 import PersonTable from 'components/PersonTable';
+import PersonSearchForm from 'components/PersonSearchForm';
+import './Persons.scss';
 
 class Persons extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     props.fetchPersons();
+    props.fetchSkills();
   }
 
-  render() {
+  render () {
     return (
-      <LoadingIndicator isLoading={this.props.isFetching}>
-        <PersonTable persons={this.props.persons} />
-      </LoadingIndicator>
+      <div>
+        <LoadingIndicator isFetched={this.props.skills.isFetched}
+          element={PersonSearchForm}
+          setSearchParams={this.props.setSearchParams}
+          options={this.props.skills.skills}
+        />
+        <LoadingIndicator isFetched={this.props.persons.isFetched}
+          element={PersonTable}
+          persons={this.props.persons.persons} />
+      </div>
     );
   }
 }
 
 Persons.propTypes = {
-  isFetching: React.PropTypes.bool.isRequired,
-  persons: React.PropTypes.array.isRequired,
-  error: React.PropTypes.string,
-  fetchPersons: React.PropTypes.func.isRequired
+  persons: React.PropTypes.object.isRequired,
+  skills: React.PropTypes.object.isRequired,
+  fetchPersons: React.PropTypes.func.isRequired,
+  fetchSkills: React.PropTypes.func.isRequired,
+  setSearchParams: React.PropTypes.func.isRequired
 };
 
 export default Persons;
