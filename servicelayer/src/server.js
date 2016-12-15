@@ -43,7 +43,7 @@ exports.createServer = function (port) {
     var person = personSearch.findPerson(id);
     if (person.length > 0) {
       res.status(200);
-      res.send(JSON.stringify(person));
+      res.send(JSON.stringify(person[0]));
       logger.debug('Returning person with id %s', id);
     } else {
       res.status(404);
