@@ -17,7 +17,12 @@ var _ = require('underscore');
 
 exports.findPersonWithSkills = function (skills, inferSkills, callback) {
   var query = null;
-  if (inferSkills) {
+  if((skills === null) || (skills.length === 0)) {
+    query = cypher()
+      .match("(p:Person)-[edge:KNOWS]->(s:Skill)")
+      .with("p.displayName AS name, p.id AS id, {level: edge.level, affinity: edge.affinity, skill: s.name} AS skills")
+      .return("name, id, collect(skills) AS skills");
+  } else if (inferSkills) {
     // TODO do something
   } else {
     query = cypher()
@@ -25,8 +30,6 @@ exports.findPersonWithSkills = function (skills, inferSkills, callback) {
       .where(pKnowsSkills(skills))
       .with("p.displayName AS name, p.id AS id, {level: edge.level, affinity: edge.affinity, skill: s.name} AS skills")
       .return("name, id, collect(skills) AS skills");
-
-    console.log(query.compile(true));
   }
 
   db.cypher({query: query.compile(true)}, function (err, result) {
@@ -65,7 +68,6 @@ function translatePeople(neo4JPeople) {
       displayName: person.name,
       id: person.id,
       skills: _.map(person.skills, function(skill) {
-        console.log(skill);
         return {
           name: skill.skill,
           inferred: false,

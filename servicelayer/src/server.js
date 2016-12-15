@@ -36,10 +36,12 @@ exports.createServer = function (port) {
         logger.debug('Returning people with skills "%s" (infer? %s)', splitSkills, isTrue(req.query.infer));
       });
     } else {
-      res.status(200);
-      res.set('Content-Type', 'application/json');
-      res.send(JSON.stringify(personSearch.allPersons));
-      logger.debug('Returning all persons');
+      personSearch.allPersons(function (err, result){
+        res.status(200);
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(result));
+        logger.debug('Returning all persons');
+      });
     }
   });
 
