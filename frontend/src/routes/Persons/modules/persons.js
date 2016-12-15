@@ -25,7 +25,6 @@ export function fetchPersons () {
 
     var url = new URL('https://techtalent.herokuapp.com/persons');
     var params = getState().persons.params;
-    console.log(getState());
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
     return fetch(url, init)
