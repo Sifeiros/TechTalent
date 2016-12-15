@@ -49,11 +49,16 @@ exports.createServer = function (port) {
     }
   });
 
+  app.options('/persons/:person', cors());
   app.post('/persons/:person', cors(), function (req, res) {
-    console.log(req.body);
-    personModify.modify(req.params.person, req.body, function(err, response) {
-      if(err) {
-        res.send(500);
+    if (JSON.stringify(req.body) === "{}") {
+      var errorMessage = 'Error: received body ' + JSON.stringify(req.body) + ' for person ' + req.params.person + '. Maybe you didn\'t send the Content-Type application/json?';
+      res.status(500).send(errorMessage);
+      logger.error(errorMessage);
+    }
+    personModify.modify(req.params.person, req.body, function (err, response) {
+      if (err) {
+        res.status(500).send('Error: received body ' + req.body + ' for person ' + req.params.person);
         logger.error(err);
       } else {
         res.send(201);
