@@ -3,7 +3,7 @@ import {
   Panel
 } from 'react-bootstrap';
 import SkillOverview from 'components/SkillOverview';
-import './Personpanel.scss';
+import './PersonPanel.scss';
 
 export const PersonPanel = function (props) {
   const title = <h3>{props.person.displayName}</h3>;
