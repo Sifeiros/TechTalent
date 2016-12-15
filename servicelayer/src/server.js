@@ -41,9 +41,9 @@ exports.createServer = function (port) {
     res.set('Content-Type', 'application/json');
     var id = req.params.person;
     personSearch.findPerson(id, true, function (err, person) {
-      if (person.length > 0) {
+      if (person) {
         res.status(200);
-        res.send(JSON.stringify(person[0]));
+        res.send(JSON.stringify(person));
         logger.debug('Returning person with id %s', id);
       } else {
         res.status(404);

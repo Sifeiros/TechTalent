@@ -1,3 +1,5 @@
+var personsdb = require('./persons');
+
 var allPersons = require('./person-mocks');
 
 exports.allPersons = allPersons.persons;
@@ -21,8 +23,8 @@ function findPeopleWithSkills(persons, skills, inferranceAllowed) {
   });
 }
 
-exports.findPerson = function (id) {
-  return findPerson(exports.allPersons, id);
+exports.findPerson = function (id, inferSkills, callback) {
+  personsdb.findPerson(id, inferSkills, callback);
 };
 
 function findPerson(persons, id) {
