@@ -26,13 +26,14 @@ exports.createServer = function (port) {
   });
 
   app.get('/persons', cors(), function (req, res) {
-    var skills = req.query.skills.split(',');
+    var skills = req.query.skills;
     if (skills) {
-      personSearch.findPeopleWithSkills(skills, isTrue(req.query.infer), function (err, result) {
+      var splitSkills = req.query.skills.split(',');
+      personSearch.findPeopleWithSkills(splitSkills, isTrue(req.query.infer), function (err, result) {
         res.status(200);
         res.set('Content-Type', 'application/json');
         res.send(JSON.stringify(result));
-        logger.debug('Returning people with skills "%s" (infer? %s)', skills, isTrue(req.query.infer));
+        logger.debug('Returning people with skills "%s" (infer? %s)', splitSkills, isTrue(req.query.infer));
       });
     } else {
       res.status(200);
