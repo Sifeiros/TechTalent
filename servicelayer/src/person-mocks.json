@@ -1,0 +1,68 @@
+{
+  "persons": [
+    {
+      "displayName": "Alasdair Collinson",
+      "id": "ac",
+      "skills": [
+        {
+          "name": "Java",
+          "inferred": false,
+          "level": 5,
+          "affinity": 4
+        },
+        {
+          "name": "Wicket",
+          "inferred": false,
+          "level": 4,
+          "affinity": 1
+        },
+        {
+          "name": "Node.JS",
+          "inferred": false,
+          "level": 2,
+          "affinity": 3
+        },
+        {
+          "name": "JavaScript",
+          "inferred": true
+        }
+      ],
+      "currentProject": {
+        "customer": "Mock Bank",
+        "name": "Homeless",
+        "pl": "cw",
+        "tl": "ds"
+      }
+    },
+    {
+      "displayName": "Thomas Maqua",
+      "id": "tm",
+      "skills": [
+        {
+          "name": "React",
+          "inferred": false,
+          "level": 5,
+          "affinity": 5
+        },
+        {
+          "name": "Redux",
+          "inferred": false,
+          "level": 3,
+          "affinity": 5
+        },
+        {
+          "name": "Angular",
+          "inferred": false,
+          "level": 4,
+          "affinity": 3
+        }
+      ],
+      "currentProject": {
+        "customer": "Magic Bank",
+        "name": "Fancypants",
+        "pl": "?",
+        "tl": "?"
+      }
+    }
+  ]
+}
