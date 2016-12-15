@@ -26,16 +26,23 @@ exports.createServer = function (port) {
   });
 
   app.get('/persons', cors(), function (req, res) {
-    res.status(200);
-    res.set('Content-Type', 'application/json');
     var skills = req.query.skills;
     if (skills) {
-      res.send(JSON.stringify(personSearch.findPeopleWithSkills(req.query.skills, isTrue(req.query.infer))));
-      logger.debug('Returning people with skills "%s" (infer? %s)', req.query.skills, isTrue(req.query.infer));
+      var splitSkills = req.query.skills.split(',');
+      personSearch.findPeopleWithSkills(splitSkills, isTrue(req.query.infer), function (err, result) {
+        res.status(200);
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(result));
+        logger.debug('Returning people with skills "%s" (infer? %s)', splitSkills, isTrue(req.query.infer));
+      });
     } else {
-      res.send(JSON.stringify(personSearch.allPersons));
+      personSearch.allPersons(function (err, result){
+        res.status(200);
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(result));
+        logger.debug('Returning all persons');
+      });
     }
-    logger.debug('Returning all persons');
   });
 
   app.get('/persons/:person', cors(), function (req, res) {
@@ -82,5 +89,5 @@ exports.createServer = function (port) {
 };
 
 function isTrue(param) {
-  return (param === true) || (param === "true");
+  return param || param === "true";
 }

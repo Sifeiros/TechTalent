@@ -1,27 +1,12 @@
 var personsdb = require('./persons');
 
-var allPersons = require('./person-mocks');
-
-exports.allPersons = allPersons.persons;
-
-exports.findPeopleWithSkills = function (skills, inferranceAllowed) {
-  return findPeopleWithSkills(allPersons, skills, inferranceAllowed);
+exports.allPersons = function(callback) {
+  return personsdb.findPersonWithSkills([], false, callback);
 };
 
-function findPeopleWithSkills(persons, skills, inferranceAllowed) {
-  // TODO Replace with actual search
-  return persons.persons.filter(function (person) {
-    var matchingSkills = [];
-    person.skills.forEach(function (skill) {
-      if (skill.name === skills) {
-        if (inferranceAllowed || !skill.inferred) {
-          matchingSkills.push(skill);
-        }
-      }
-    });
-    return matchingSkills.length > 0;
-  });
-}
+exports.findPeopleWithSkills = function (skills, inferranceAllowed, callback) {
+  return personsdb.findPersonWithSkills(skills, inferranceAllowed, callback);
+};
 
 exports.findPerson = function (id, inferSkills, callback) {
   personsdb.findPerson(id, inferSkills, callback);
