@@ -3,14 +3,14 @@ import fetch from 'isomorphic-fetch';
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const FETCH_PERSON_REQUEST = 'FETCH_PERSON_REQUEST';
-export const FETCH_PERSON_FAILURE = 'FETCH_PERSON_FAILURE';
-export const FETCH_PERSON_SUCCESS = 'FETCH_PERSON_SUCCESS';
+export const FETCH_SKILLS_REQUEST = 'FETCH_SKILLS_REQUEST';
+export const FETCH_SKILLS_FAILURE = 'FETCH_SKILLS_FAILURE';
+export const FETCH_SKILLS_SUCCESS = 'FETCH_SKILLS_SUCCESS';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function fetchPerson (id) {
+export function fetchSkills () {
   return function (dispatch) {
     dispatch(request());
 
@@ -22,7 +22,7 @@ export function fetchPerson (id) {
       mode: 'cors',
       cache: 'default' };
 
-    return fetch(`https://techtalent.herokuapp.com/persons/${id}`, init)
+    return fetch('https://techtalent.herokuapp.com/skills', init)
       .then(response => response.json())
       .then(json => dispatch(receive(json))
       ).catch(function (error) {
@@ -33,50 +33,50 @@ export function fetchPerson (id) {
 
 function request () {
   return {
-    type: FETCH_PERSON_REQUEST
+    type: FETCH_SKILLS_REQUEST
   };
 }
 
-function receive (person) {
+function receive (skills) {
   return {
-    type: FETCH_PERSON_SUCCESS,
-    payload: person
+    type: FETCH_SKILLS_SUCCESS,
+    payload: skills
   };
 }
 
 function failure (error) {
   return {
-    type: FETCH_PERSON_FAILURE,
+    type: FETCH_SKILLS_FAILURE,
     payload: error
   };
 }
 
 export const actions = {
-  fetchPerson
+  fetchSkills
 };
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [FETCH_PERSON_REQUEST]: function (state, action) {
+  [FETCH_SKILLS_REQUEST]: function (state, action) {
     return Object.assign({}, state, {
       isFetching: true,
       error: null
     });
   },
-  [FETCH_PERSON_FAILURE]: function (state, action) {
+  [FETCH_SKILLS_FAILURE]: function (state, action) {
     return Object.assign({}, state, {
       isFetching: false,
       error: action.payload
     });
   },
-  [FETCH_PERSON_SUCCESS]: function (state, action) {
+  [FETCH_SKILLS_SUCCESS]: function (state, action) {
     return Object.assign({}, state, {
       isFetching: false,
       error: null,
       isFetched: true,
-      person: action.payload
+      skills: action.payload
     });
   }
 };
@@ -85,13 +85,13 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
+  isFetched: true,
   isFetching: false,
-  isFetched: false,
-  persons: null,
+  skills: [],
   error: null
 };
 
-export default function personReducer (state = initialState, action) {
+export default function skillsReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
 
   return handler ? handler(state, action) : state;

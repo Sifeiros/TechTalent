@@ -1,16 +1,18 @@
 import { connect } from 'react-redux';
-import { fetchPersons } from '../modules/persons';
+import { fetchPersons, setSearchParams } from '../modules/persons';
+import { fetchSkills } from '../modules/skills';
 
 import Persons from '../components/Persons';
 
 const mapDispatchToProps = {
-  fetchPersons
+  fetchPersons,
+  setSearchParams,
+  fetchSkills
 };
 
 const mapStateToProps = (state) => ({
-  isFetching : state.persons.isFetching,
-  persons: state.persons.persons,
-  error: state.persons.error
+  persons : state.persons,
+  skills : state.skills
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Persons);

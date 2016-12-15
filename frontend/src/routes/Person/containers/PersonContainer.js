@@ -9,6 +9,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
   isFetching : state.person.isFetching,
+  isFetched : state.person.isFetched,
   person: state.person.person,
   error: state.person.error
 });
