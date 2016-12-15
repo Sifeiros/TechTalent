@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +18,8 @@
   },
   "homepage": "https://github.com/blalasaadri/TechTalent#readme",
   "dependencies": {
-    "http": "0.0.0",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
     "moment": "^2.17.1",
     "underscore": "^1.8.3",
     "winston": "^2.3.0"

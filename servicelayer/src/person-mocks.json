@@ -55,6 +55,12 @@
           "inferred": false,
           "level": 4,
           "affinity": 3
+        },
+        {
+          "name": "JavaScript",
+          "inferred": false,
+          "level": 4,
+          "affinity": 4
         }
       ],
       "currentProject": {
