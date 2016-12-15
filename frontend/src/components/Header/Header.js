@@ -26,6 +26,9 @@ export const Header = () => (
         <LinkContainer to='/counter'>
           <NavItem>Counter</NavItem>
         </LinkContainer>
+        <LinkContainer to='/persons'>
+          <NavItem>Persons</NavItem>
+        </LinkContainer>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
