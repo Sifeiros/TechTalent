@@ -26,21 +26,29 @@ exports.createServer = function (port) {
   });
 
   app.get('/persons', cors(), function (req, res) {
-    res.status(200);
-    res.set('Content-Type', 'application/json');
     var skills = req.query.skills;
     if (skills) {
-      res.send(JSON.stringify(personSearch.findPeopleWithSkills(req.query.skills, req.query.infer)));
-      logger.debug('Returning people with skills "%s" (infer? %s)', req.query.skills, req.query.infer);
+      var splitSkills = req.query.skills.split(',');
+      personSearch.findPeopleWithSkills(splitSkills, isTrue(req.query.infer), function (err, result) {
+        res.status(200);
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(result));
+        logger.debug('Returning people with skills "%s" (infer? %s)', splitSkills, isTrue(req.query.infer));
+      });
     } else {
-      res.send(JSON.stringify(personSearch.allPersons));
+      personSearch.allPersons(function (err, result){
+        res.status(200);
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(result));
+        logger.debug('Returning all persons');
+      });
     }
-    logger.debug('Returning all persons');
   });
+
   app.get('/persons/:person', cors(), function (req, res) {
     res.set('Content-Type', 'application/json');
     var id = req.params.person;
-    personSearch.findPerson(id, true, function (err, person) {
+    personSearch.findPerson(id, isTrue(req.query.infer), function (err, person) {
       if (person) {
         res.status(200);
         res.send(JSON.stringify(person));
@@ -52,12 +60,22 @@ exports.createServer = function (port) {
       }
     });
   });
+
   app.get('/skills', cors() , function (req, res) {
+    res.set('Content-Type', 'application/json');
     skillsSearch.skills(function(err, skills) {
       res.status(200);
       res.send(JSON.stringify(skills));
       logger.debug('Returned skills %s', skills);
     });
+  });
+
+  app.get('/skills/stats', cors(), function (req, res) {
+    res.set('Content-Type', 'application/json');
+    skillsSearch.skillsWithStatistics(function(err, skills) {
+      res.status(200);
+      res.send(JSON.stringify(skills));
+    })
   });
 
   var server = app.listen(port, function () {
@@ -69,3 +87,7 @@ exports.createServer = function (port) {
 
   return server;
 };
+
+function isTrue(param) {
+  return param || param === "true";
+}
