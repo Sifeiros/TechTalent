@@ -26,17 +26,22 @@ exports.createServer = function (port) {
   });
 
   app.get('/persons', cors(), function (req, res) {
-    res.status(200);
-    res.set('Content-Type', 'application/json');
-    var skills = req.query.skills;
+    var skills = req.query.skills.split(',');
     if (skills) {
-      res.send(JSON.stringify(personSearch.findPeopleWithSkills(req.query.skills, req.query.infer)));
-      logger.debug('Returning people with skills "%s" (infer? %s)', req.query.skills, req.query.infer);
+      personSearch.findPeopleWithSkills(skills, isTrue(req.query.infer), function (err, result) {
+        res.status(200);
+        res.set('Content-Type', 'application/json');
+        res.send(JSON.stringify(result));
+        logger.debug('Returning people with skills "%s" (infer? %s)', skills, isTrue(req.query.infer));
+      });
     } else {
+      res.status(200);
+      res.set('Content-Type', 'application/json');
       res.send(JSON.stringify(personSearch.allPersons));
+      logger.debug('Returning all persons');
     }
-    logger.debug('Returning all persons');
   });
+
   app.get('/persons/:person', cors(), function (req, res) {
     res.set('Content-Type', 'application/json');
     var id = req.params.person;
@@ -52,8 +57,9 @@ exports.createServer = function (port) {
       }
     });
   });
-  app.get('/skills', cors() , function (req, res) {
-    skillsSearch.skills(function(err, skills) {
+
+  app.get('/skills', cors(), function (req, res) {
+    skillsSearch.skills(function (err, skills) {
       res.status(200);
       res.send(JSON.stringify(skills));
       logger.debug('Returned skills %s', skills);
@@ -69,3 +75,7 @@ exports.createServer = function (port) {
 
   return server;
 };
+
+function isTrue(param) {
+  return param || param === "true";
+}
