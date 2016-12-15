@@ -17,8 +17,9 @@ function getListOfSkills(dbresult) {
 
 exports.skillsWithStatistics = function (callback) {
   var query = cypher()
-    .match("(p:Person)-[:KNOWS]->(s:Skill)")
-    .return("s.name AS skill, count(p) AS people");
+    .match("(p:Person)-[edge:KNOWS]->(s:Skill)")
+    .with("s AS s, { id: p.id, values: {level: edge.level, affinity: edge.affinity} } as connections")
+    .return("s.name AS skill, collect(connections) AS values");
 
   db.cypher({query: query.compile(true)}, callback);
-}
+};
