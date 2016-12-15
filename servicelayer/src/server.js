@@ -16,11 +16,14 @@ var persons = require('./person-mocks');
 exports.createServer = function (port) {
   app.get('/', function(req, res) {
     res.status(501);
+    res.set('Access-Control-Allow-Origin:', '*');
     res.send(JSON.stringify({ message: 'not implemented'}));
   });
 
   app.get('/persons', function(req, res) {
     res.status(200);
+    res.set('Content-Type', 'application/json');
+    res.set('Access-Control-Allow-Origin:', '*');
     res.send(JSON.stringify(persons));
   });
 
