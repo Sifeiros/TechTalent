@@ -1,9 +1,9 @@
-import {connect} from 'react-redux';
-import {fetchPersons, setSearchParams} from '../modules/persons';
-import {fetchSkills} from '../modules/skills';
+import { connect } from 'react-redux';
+import { fetchPersons, setSearchParams } from '../modules/persons';
+import { fetchSkills } from '../../Skills/modules/skills';
 
 import Persons from '../components/Persons';
-import {createSelector} from 'reselect'
+import { createSelector } from 'reselect';
 
 const mapDispatchToProps = {
   fetchPersons,
@@ -15,15 +15,22 @@ const getPersons = (state) => state.persons;
 const injectSearchIntoPersons = createSelector(getPersons, function (persons) {
   persons.persons.forEach(function (person) {
     person.skills.forEach(function (skill) {
-      skill.ignored = persons.params.skills && persons.params.skills.length ? persons.params.skills.indexOf(skill.name) === -1 : false;
+      let skills = persons.params.skills;
+      skill.ignored = skills && skills.length && skills.indexOf(skill.name) === -1;
     });
   });
   return persons;
 });
 
+const getSkills = (state) => state.skills;
+const flattenSkills = createSelector(getSkills, function (skills) {
+  skills.skills = skills.skills ? skills.skills.map((skillObject) => skillObject.skill) : null;
+  return skills;
+});
+
 const mapStateToProps = (state) => ({
   persons: injectSearchIntoPersons(state),
-  skills: state.skills
+  skills: flattenSkills(state)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Persons);

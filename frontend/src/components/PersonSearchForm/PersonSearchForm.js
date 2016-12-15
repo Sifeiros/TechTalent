@@ -1,8 +1,8 @@
 import React from 'react';
-import {Typeahead} from 'react-bootstrap-typeahead';
+import { Typeahead } from 'react-bootstrap-typeahead';
 
 class PersonSearchForm extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.state = this.props.params;
@@ -11,29 +11,29 @@ class PersonSearchForm extends React.Component {
     this.updateInfer = this.updateInfer.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate (prevProps, prevState) {
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
       this.props.setSearchParams(this.state);
     }
   }
 
-  updateSkills(skills) {
-    this.setState({skills});
+  updateSkills (skills) {
+    this.setState({ skills });
   }
 
-  updateInfer(event) {
-    this.setState({infer: !!event.target.checked});
+  updateInfer (event) {
+    this.setState({ infer: !!event.target.checked });
   }
 
-  render() {
+  render () {
     return (
       <form>
         <div className='form-group'>
           <Typeahead onChange={this.updateSkills}
-                     options={this.props.options}
-                     placeholder='Skills'
-                     defaultSelected={this.state.skills}
-                     multiple/>
+            options={this.props.options}
+            placeholder='Skills'
+            defaultSelected={this.state.skills}
+            multiple />
         </div>
         <div className='checkbox'>
           <label>
@@ -47,7 +47,8 @@ class PersonSearchForm extends React.Component {
 
 PersonSearchForm.propTypes = {
   setSearchParams: React.PropTypes.func.isRequired,
-  options: React.PropTypes.array.isRequired
+  options: React.PropTypes.array.isRequired,
+  params: React.PropTypes.object.isRequired
 };
 
 export default PersonSearchForm;

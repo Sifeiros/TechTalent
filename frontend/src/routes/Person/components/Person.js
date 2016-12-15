@@ -10,7 +10,7 @@ class Person extends React.Component {
 
   render () {
     return (
-      <LoadingIndicator isFetched={this.props.isFetched}
+      <LoadingIndicator isFetched={this.props.isFetched} error={this.props.error}
         element={PersonPanel}
         person={this.props.person} />
     );

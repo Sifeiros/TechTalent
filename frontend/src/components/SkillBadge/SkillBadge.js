@@ -7,10 +7,10 @@ var skillBadgeChildClass = function (variant, value) {
 
 var skillBadgeClass = function (skill) {
   let classes = ['skill-badge'];
-  if(skill.ignored) {
+  if (skill.ignored) {
     classes.push('skill-badge-ignored');
   }
-  if(skill.inferred) {
+  if (skill.inferred) {
     classes.push('skill-badge-inferred');
   }
   return classes.join(' ');

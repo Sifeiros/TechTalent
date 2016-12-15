@@ -23,11 +23,11 @@ export const Header = () => (
         <IndexLinkContainer to='/'>
           <NavItem>Home</NavItem>
         </IndexLinkContainer>
-        <LinkContainer to='/counter'>
-          <NavItem>Counter</NavItem>
-        </LinkContainer>
         <LinkContainer to='/persons'>
           <NavItem>Persons</NavItem>
+        </LinkContainer>
+        <LinkContainer to='/skills'>
+          <NavItem>Skills</NavItem>
         </LinkContainer>
       </Nav>
     </Navbar.Collapse>

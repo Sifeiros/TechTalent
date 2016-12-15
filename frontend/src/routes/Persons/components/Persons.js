@@ -5,24 +5,24 @@ import PersonSearchForm from 'components/PersonSearchForm';
 import './Persons.scss';
 
 class Persons extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     props.fetchPersons();
     props.fetchSkills();
   }
 
-  render() {
+  render () {
     return (
       <div>
-        <LoadingIndicator isFetched={this.props.skills.isFetched}
-                          element={PersonSearchForm}
-                          setSearchParams={this.props.setSearchParams}
-                          options={this.props.skills.skills}
-                          params={this.props.persons.params}
+        <LoadingIndicator isFetched={this.props.skills.isFetched} error={this.props.skills.error}
+          element={PersonSearchForm}
+          setSearchParams={this.props.setSearchParams}
+          options={this.props.skills.skills}
+          params={this.props.persons.params}
         />
-        <LoadingIndicator isFetched={this.props.persons.isFetched}
-                          element={PersonTable}
-                          persons={this.props.persons.persons}/>
+        <LoadingIndicator isFetched={this.props.persons.isFetched} error={this.props.persons.error}
+          element={PersonTable}
+          persons={this.props.persons.persons} />
       </div>
     );
   }
