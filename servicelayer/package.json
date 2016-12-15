@@ -1,0 +1,26 @@
+{
+  "name": "tech-talent-servicelayer",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blalasaadri/TechTalent.git"
+  },
+  "author": "Alasdair Collinson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blalasaadri/TechTalent/issues"
+  },
+  "homepage": "https://github.com/blalasaadri/TechTalent#readme",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "http": "0.0.0",
+    "moment": "^2.17.1",
+    "underscore": "^1.8.3",
+    "winston": "^2.3.0"
+  }
+}
