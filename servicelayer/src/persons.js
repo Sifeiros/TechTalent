@@ -11,14 +11,14 @@ exports.findPersonWithSkills = function (skills, inferSkills, callback) {
     query = cypher()
       .match("(p:Person)-[edge:KNOWS]->(s:Skill)")
       .where(pKnowsSkills(skills))
-      .with("p.displayName AS name, p.id AS id, edge.level AS level, edge.affinity AS affinity, s.name AS skill")
-      .return("name, id, level, affinity, skill");
+      .with("p.displayName AS name, p.id AS id, {level: edge.level, affinity: edge.affinity, skill: s.name} AS skills")
+      .return("name, id, collect(skills) AS skills");
 
     console.log(query.compile(true));
   }
 
   db.cypher({query: query.compile(true)}, function (err, result) {
-    return callback(err, translatePerson(result));
+    return callback(err, translatePeople(result));
   });
 };
 
@@ -43,14 +43,36 @@ exports.findPerson = function (id, inferSkills, callback) {
   // }
 
   db.cypher({query: query.compile(true)}, function (err, result) {
-    return callback(err, translatePerson(result));
+    return callback(err, translateFirstPerson(result));
   });
 };
 
-function translatePerson(neo4JPerson) {
+function translatePeople(neo4JPeople) {
+  return _.map(neo4JPeople, function(person) {
+    return {
+      displayName: person.name,
+      id: person.id,
+      skills: _.map(person.skills, function(skill) {
+        console.log(skill);
+        return {
+          name: skill.skill,
+          inferred: false,
+          level: skill.level,
+          affinity: skill.affinity
+        }
+      })
+    }
+  });
+}
+
+function translateFirstPerson(neo4JPerson) {
+  return translatePerson(neo4JPerson, 0);
+}
+
+function translatePerson(neo4JPerson, index) {
   return {
-    displayName: neo4JPerson[0].name,
-    id: neo4JPerson[0].id,
+    displayName: neo4JPerson[index].name,
+    id: neo4JPerson[index].id,
     skills: _.map(neo4JPerson, function (personEntry) {
       return {
         name: personEntry.skill,
