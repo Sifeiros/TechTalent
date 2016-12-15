@@ -1,7 +1,6 @@
 var express = require('express');
 var cors = require('cors');
 var app = express();
-app.use(cors);
 
 var winston = require('winston');
 var logger = new (winston.Logger) ({
@@ -23,7 +22,7 @@ exports.createServer = function (port) {
     res.send(JSON.stringify({ message: 'not implemented'}));
   });
 
-  app.get('/persons', function(req, res) {
+  app.get('/persons', cors(), function(req, res) {
     res.status(200);
     res.set('Content-Type', 'application/json');
     res.send(JSON.stringify(persons));
