@@ -40,17 +40,16 @@ exports.createServer = function (port) {
   app.get('/persons/:person', cors(), function (req, res) {
     res.set('Content-Type', 'application/json');
     var id = req.params.person;
-    personSearch.findPerson(id, function (person) {
-      if (person.length > 0) {
-        res.status(200);
-        res.send(JSON.stringify(person[0]));
-        logger.debug('Returning person with id %s', id);
-      } else {
-        res.status(404);
-        res.send(JSON.stringify({error: 'No person with id "' + id + '" found.'}));
-        logger.debug('No person with id %s found', id);
-      }
-    });
+    var person = personSearch.findPerson(id);
+    if (person.length > 0) {
+      res.status(200);
+      res.send(JSON.stringify(person));
+      logger.debug('Returning person with id %s', id);
+    } else {
+      res.status(404);
+      res.send(JSON.stringify({error: 'No person with id "' + id + '" found.' }));
+      logger.debug('No person with id %s found', id);
+    }
   });
   app.get('/skills', cors() , function (req, res) {
     skillsSearch.skills(function(err, skills) {
