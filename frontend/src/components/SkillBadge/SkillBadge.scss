@@ -1,4 +1,5 @@
 $skill-badge-border: 1px solid #999;
+$skill-badge-ignored-opacity: 0.4;
 $skill-badge-color-default: #fff;
 $skill-badge-color-inferred: #eee;
 $skill-badge-border-radius: 4px;
@@ -56,5 +57,9 @@ $skill-badge-border-radius: 4px;
 
   &.skill-badge-inferred {
     background-color: $skill-badge-color-inferred;
+  }
+
+  &.skill-badge-ignored {
+    opacity: $skill-badge-ignored-opacity;
   }
 }

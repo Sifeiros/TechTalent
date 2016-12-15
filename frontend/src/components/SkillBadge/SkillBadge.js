@@ -1,23 +1,34 @@
 import React from 'react';
 import './SkillBadge.scss';
 
-var skillBadgeClass = function (variant, value) {
+var skillBadgeChildClass = function (variant, value) {
   return 'skill-badge-' + variant + ' skill-badge-color-' + value;
+};
+
+var skillBadgeClass = function (skill) {
+  let classes = ['skill-badge'];
+  if(skill.ignored) {
+    classes.push('skill-badge-ignored');
+  }
+  if(skill.inferred) {
+    classes.push('skill-badge-inferred');
+  }
+  return classes.join(' ');
 };
 
 export const SkillBadge = function (props) {
   if (props.skill.inferred) {
     return (
-      <div className='skill-badge skill-badge-inferred'>
+      <div className={skillBadgeClass(props.skill)}>
         <div className='skill-badge-name'>{props.skill.name}</div>
       </div>
     );
   } else {
     return (
-      <div className='skill-badge'>
-        <div className={skillBadgeClass('level', props.skill.level)}>{props.skill.level}</div>
+      <div className={skillBadgeClass(props.skill)}>
+        <div className={skillBadgeChildClass('level', props.skill.level)}>{props.skill.level}</div>
         <div className='skill-badge-name'>{props.skill.name}</div>
-        <div className={skillBadgeClass('affinity', props.skill.affinity)}>{props.skill.affinity}</div>
+        <div className={skillBadgeChildClass('affinity', props.skill.affinity)}>{props.skill.affinity}</div>
       </div>
     );
   }
