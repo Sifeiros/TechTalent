@@ -14,8 +14,11 @@ var logger = new (winston.Logger)({
 });
 
 var personSearch = require('./person-search');
+var skillsSearch = require('./skills-search');
 
 exports.createServer = function (port) {
+  logger.info('Starting server on port', port);
+
   app.get('/', cors(), function (req, res) {
     res.status(501);
     res.set('Content-Type', 'application/json');
@@ -40,13 +43,20 @@ exports.createServer = function (port) {
     var person = personSearch.findPerson(id);
     if (person.length > 0) {
       res.status(200);
-      res.send(JSON.stringify(person[0]));
+      res.send(JSON.stringify(person));
       logger.debug('Returning person with id %s', id);
     } else {
       res.status(404);
       res.send(JSON.stringify({error: 'No person with id "' + id + '" found.' }));
       logger.debug('No person with id %s found', id);
     }
+  });
+  app.get('/skills', cors() , function (req, res) {
+    skillsSearch.skills(function(err, skills) {
+      res.status(200);
+      res.send(JSON.stringify(skills));
+      logger.debug('Returned skills %s', skills);
+    });
   });
 
   var server = app.listen(port, function () {

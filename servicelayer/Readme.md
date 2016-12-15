@@ -103,3 +103,21 @@ Result:
     Connection: keep-alive
 
     {"error":"No person with id \"bd\" found."}
+    
+Get a list of all skills
+========================
+    curl -i -H "Accept: application/json" -X GET https://techtalent.herokuapp.com/skills
+Result:
+
+    HTTP/1.1 200 OK
+    Server: Cowboy
+    Connection: keep-alive
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: text/html; charset=utf-8
+    Content-Length: 66
+    Etag: W/"42-z/Rw/Yjqy6Jb35WPHKt7Cw"
+    Date: Thu, 15 Dec 2016 15:12:45 GMT
+    Via: 1.1 vegur
+    
+    ["Java","Wicket","Node.JS","JavaScript","React","Angular","Redux"]
