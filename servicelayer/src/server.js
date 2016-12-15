@@ -53,12 +53,22 @@ exports.createServer = function (port) {
       }
     });
   });
+
   app.get('/skills', cors() , function (req, res) {
+    res.set('Content-Type', 'application/json');
     skillsSearch.skills(function(err, skills) {
       res.status(200);
       res.send(JSON.stringify(skills));
       logger.debug('Returned skills %s', skills);
     });
+  });
+
+  app.get('/skills/stats', cors(), function (req, res) {
+    res.set('Content-Type', 'application/json');
+    skillsSearch.skillsWithStatistics(function(err, skills) {
+      res.status(200);
+      res.send(JSON.stringify(skills));
+    })
   });
 
   var server = app.listen(port, function () {
